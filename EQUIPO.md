@@ -2,13 +2,13 @@
 
 - **Nuestro servicio:** Carrito · puerto 50057 · contrato `carrito.proto`
 - **Servicio que consumimos (vecino):** Catálogo · puerto 50051 · contrato `catalogo.proto`
-- **Repositorio del equipo vecino:** (pega aquí la URL)
+- **Repositorio del equipo vecino:** ([pega aquí la URL](https://github.com/Elias735/reto-tienda))
 
 | Integrante | Matrícula | Rol |
 |---|---|---|
-| | | Servidor |
-| | | Cliente |
-| | | Integración (README, issues y prueba cruzada) |
+|alex santos gutierrez | 20205341 | Servidor |
+|luis fernando aviña martinez | 20205295| Cliente |
+|jesus angel aguilar vazquez |20204845 | Integración (README, issues y prueba cruzada) |
 
 ## Prueba cruzada
 
