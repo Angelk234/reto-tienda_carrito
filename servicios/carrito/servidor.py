@@ -19,19 +19,35 @@ CARRITOS = {
 class CarritoServicio(carrito_pb2_grpc.CarritoServicer):
 
     def TotalCarrito(self, request, context):
-        # UNARIO: regresa UNA caja con return
-        # TODO
-        # Si el usuario no tiene carrito: context.abort(grpc.StatusCode.NOT_FOUND, ...)
-        # Si tiene: total = suma de PRECIOS[clave] * cantidad; artículos = suma de las cantidades.
-        # Regresa un carrito_pb2.Total.
-        context.abort(grpc.StatusCode.UNIMPLEMENTED, "Falta implementar TotalCarrito")
+        if request.usuario not in CARRITOS :
+            context.abort(grpc.StatusCode.NOT_FOUND, "El usuario no tiene carrito")
+
+        articulos =  CARRITOS[request.usuario]
+        total = sum(
+            PRECIOS[clave] * cantidad
+            for clave, cantidad in articulos
+        )
+        cantidad_articulos = sum(
+            cantidad for clave, cantidad in articulos
+        )
+        return carrito_pb2.Total(
+            usuario=request.usuario,
+            total_centavos=total,
+            articulos=cantidad_articulos
+        )
 
     def VerArticulos(self, request, context):
-        # STREAMING: entrega VARIAS cajas con yield
-        # TODO
-        # Si el usuario no tiene carrito: context.abort(grpc.StatusCode.NOT_FOUND, ...)
-        # Si tiene: por cada artículo, espera 0.5 s y haz yield de un carrito_pb2.Articulo (subtotal = precio * cantidad).
-        context.abort(grpc.StatusCode.UNIMPLEMENTED, "Falta implementar VerArticulos")
+        if request.usuario not in CARRITOS :
+            context.abort(grpc.StatusCode.NOT_FOUND, "El usuario no tiene carrito")
+        for clave, cantidad in CARRITOS [request.usuario]:
+            time.sleep(0.5)
+
+            yield carrito_pb2.Articulos(
+                clave = clave,
+                cantidad = cantidad,
+                subtotal_centavos= PRECIOS[clave] * cantidad
+            )
+
 
 
 servidor = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
