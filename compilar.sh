@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Genera el código Python de los contratos que están en esta carpeta.
 # Vuelve a correrlo CADA VEZ que cambie un .proto.
+
 set -e
 shopt -s nullglob
 protos=(*.proto)

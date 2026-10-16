@@ -33,7 +33,7 @@ El contrato de cada uno, con sus reglas y los datos para probar, está en `servi
 
 ```bash
 python preparar.py <tu_servicio> <servicio_vecino>
-bash compilar.sh
+source setup.sh
 ```
 
 **4. Terminal 1 · Su servidor.** Completen los `TODO` de `servidor.py` y córranlo:

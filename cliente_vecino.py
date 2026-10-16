@@ -2,7 +2,13 @@
 # Contrato del vecino: catalogo.proto · Qué hace y con qué datos probar: servicios/catalogo/README.md
 # Antes de correrlo, el servidor del vecino debe estar corriendo (README.md, paso 5).
 import grpc
+import sys
+import os
 
+ruta_vecino = os.path.abspath('../vecino/reto-tienda')
+sys.path.append(ruta_vecino)
+
+# 2. Importa los módulos directamente por su nombre, sin la ruta ni el ".py"
 import catalogo_pb2
 import catalogo_pb2_grpc
 
