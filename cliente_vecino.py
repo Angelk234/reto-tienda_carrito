@@ -13,7 +13,7 @@ print("=== Parte 1 · ObtenerProducto con un dato válido ===")
 # TODO: arma la petición con un dato que funcione (tabla "Datos para probar" del README del vecino),
 #       llama a stub.ObtenerProducto(...) e imprime los campos de la respuesta.
 try:
-    peticion=catalogo_pb2.ProductoRequst(clave = "P001")
+    peticion=catalogo_pb2.ProductoRequest(clave = "P001")
     respuesta= stub.ObtenerProducto(peticion)
     print(f"¡Producto encontrado!")
     print(f"  - Clave: {respuesta.clave}")
@@ -27,8 +27,7 @@ print("=== Parte 2 · ObtenerProducto con un dato que provoca error ===")
 # TODO: llama con un dato que provoque error, dentro de try/except grpc.RpcError,
 #       e imprime e.code() y e.details(). El programa NO debe tronar.
 try:
-    # Usamos una clave que no exista para forzar un error gRPC
-    peticion_error = catalogo_pb2.ProductoRequest(clave="CLAVE_INEXISTENTE")
+    peticion_error = catalogo_pb2.ProductoRequest(clave="P999")
     stub.ObtenerProducto(peticion_error)
 except grpc.RpcError as e:
     print(f"Código de error: {e.code()}, {e.details}")
@@ -37,7 +36,7 @@ print("=== Parte 3 · ListarCategoria (streaming) ===")
 # TODO: recorre stub.ListarCategoria(...) con for e imprime cada caja en cuanto llegue.
 #       Ponlo también dentro de try/except por si el servidor regresa un error.
 try:
-    peticion_cat = catalogo_pb2.CategoriaRequest(categoria="bebidas")
+    peticion_cat = catalogo_pb2.CategoriaRequest(categoria="accesorios")
     print("Recibiendo productos de la categoría...")
     for producto in stub.ListarCategoria(peticion_cat):
         print(f" -> [{producto.clave}] {producto.nombre} | ${producto.precio_centavos} centavos")
