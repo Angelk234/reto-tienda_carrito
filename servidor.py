@@ -42,7 +42,7 @@ class CarritoServicio(carrito_pb2_grpc.CarritoServicer):
         for clave, cantidad in CARRITOS [request.usuario]:
             time.sleep(0.5)
 
-            yield carrito_pb2.Articulos(
+            yield carrito_pb2.Articulo(
                 clave = clave,
                 cantidad = cantidad,
                 subtotal_centavos= PRECIOS[clave] * cantidad
