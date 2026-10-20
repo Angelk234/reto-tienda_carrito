@@ -5,7 +5,7 @@ import grpc
 import sys
 import os
 
-ruta_vecino = os.path.abspath('../vecino/reto-tienda')
+ruta_vecino = os.path.abspath('../vecino/reto-tienda/reto-tienda')
 sys.path.append(ruta_vecino)
 
 # 2. Importa los módulos directamente por su nombre, sin la ruta ni el ".py"

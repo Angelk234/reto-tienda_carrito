@@ -18,6 +18,7 @@ message Total {
   string usuario = 1;
   int32 total_centavos = 2;
   int32 articulos = 3;
+  bool envio_gratis = 4;
 }
 
 message Articulo {
